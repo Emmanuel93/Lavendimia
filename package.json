@@ -4,6 +4,7 @@
   "description": "Plantilla general de proyectos",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
      "postinstall": "bower install"
   },
   "author": "",
@@ -20,7 +21,8 @@
     "mysql": "^2.11.1",
     "nodemailer": "^2.5.0",
     "pg": "^4.5.1",
-    "pug": "^0.1.0"
+    "pug": "^0.1.0",
+    "bower": "1.7.9"
   },
   "devDependencies": {
     "babelify": "^7.3.0",
