@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="App">
+    <head>
+        <meta charset="utf-8">
+        <title>La Vendimia</title>
+        <!-- Import CSS dependencias -->
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+        <!-- Import own CSS files -->
+    </head>
+    <body ng-controller="appController">
+        <ng-include src="'header.html'"></ng-include>
+        <!-- Include layot -->
+        <!--    
+        
+        <ng-include src="'layout/aside.html'"></ng-include>
+        <ng-include src="'layout/footer.html'"></ng-include> 
+        -->
+        <!-- Dinamic view -->
+        <div class="bs-changing-view" ui-view
+            ng-class="{'bs-sidebar-hidden-changing-view': menu, 'bs-sidebar-shown-changing-view': !menu}">
+        </div>
+        <!-- Import JS dependencias -->
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/angular/angular.min.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="../bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+         
+        <!-- import own JS files -->
+        <script src="app.js"></script>
+        <script src="config.js"></script>
+        <script src="controllers/logoController.js"></script>
+        <script src="controllers/clientesController.js"></script>
+        <script src="controllers/articulosController.js"></script>
+        <script src="controllers/ventasController.js"></script>
+        <script src="controllers/configuracionesController.js"></script>
+        
+
+    </body>
+</html>

@@ -1,0 +1,143 @@
+  <center> 
+    <div class="page-header" style=>
+        <h1>Ventas</h1>
+    </div>
+  </center>
+
+<div class="panel panel-default" style="width:95%;margin:0 auto;">
+    <!-- Default panel contents -->
+    <div class="panel-heading "><h1>Ventas</h1></div>
+    
+    <div class="panel-body" align="right">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Codigo o Nombre" ng-model="buscar">
+            </div>
+            <button type="button" class="btn btn-primary">Buscar</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="show" ng-click="siguienteCodigo()">+</button>
+        </form>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover table-bordered bs-table-th-centered" width="80%">
+        <thead>
+            <tr>
+                <th>FOLIO DE LA VENTA</th>
+                <th>CLAVE DEL CLIENTE</th>
+                <th>NOMBRE</th>
+                <th>FECHA</th>
+                <th>TOTAL</th>
+                
+
+           
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="venta in ventas | filter : buscar">
+                <td> {{venta.codigo}} </td>
+                <td> {{venta.codigo_cliente}} </td>
+                <td> {{venta.nombre}} </td>
+                <td> {{venta.fecha}}</td>
+                <td> ${{venta.total}}</td>
+                
+            </tr> 
+        </tbody>
+    </table>
+    <div class="panel-footer" align="center"></div>
+</div>
+
+  <!-- Modal -->
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content  panel panel-primary" style="width:1300px!important;margin-left:-57%;">
+        <div class="modal-header panel-heading">
+          <button type="button" class="close" data-dismiss="modal" id="pop">&times;</button>
+          <h4 class="modal-title">Venta Nueva</h4>
+        </div>
+        <div class="modal-body">
+            <label for="" align="left">Codigo:</label> 
+            <input type="text" placeholder="Codigo" class="form-control" ng-model="venta.codigo" style="width:15%" disabled="disabled">
+            <label for="" align="left">Cliente:</label> 
+            <input type="text" placeholder="Cliente" class="form-control" ng-model="venta.cliente" style="width:35%" uib-typeahead="cliente.codigo + ' - ' + cliente.nombre + ' ' + cliente.apellido_paterno + ' ' + cliente.apellido_materno for cliente in obtenerClientes($viewValue)" typeahead-min-length="3" typeahead-on-select="asignaCliente($item)" ><br>
+            <label for="" align="left">RFC:</label> 
+            <input type="text" placeholder="" class="form-control" ng-model="venta.rfc" style="width:15%" disabled="disabled"><br>
+             <center><label for="" ng-show="configuracion"><b>Los datos ingresados no son correctos, favor de verificar.</b></label></center> 
+            <table  class="table table-hover bs-table-th-centered" width="80%">
+                <div>
+                  <thead class="bg-default">
+                      <td widtd="5%"  align="center" ng-click=""><button type="button" class="btn btn-default" ng-click="addLinea()">+</button></td>
+                      <td align="center"><b>No.</b></td>
+                      <td align="center"><b>Articulo</b></td>
+                      <td align="center"><b>Descripción</b></td>
+                      <td align="center"><b>Modelo</b></td>
+                      <td align="center"><b>Cantidad</b></td>
+                      <td align="center"><b>Precio</b></td>
+                      <td align="center"><b>Importe</b></td>
+                  </thead>
+               
+
+                  <tbody>
+                        <tr ng-repeat="detalle in detalles">
+                            <td align="center"><button type="button" class="btn btn-danger" ng-click="quitarLinea($index)"> - </button></td>
+                            <td align="center">{{$index + 1}}</td>
+                            <td width="20%"><input type="text"    class="form-control"  ng-model="detalle.articulo" uib-typeahead="articulo.codigo + ' - ' + articulo.descripcion  for articulo in obtenerArticulo($viewValue)" typeahead-min-length="3" typeahead-on-select="asignaArticulo($index,$item)"></td>
+                            <td><input type="text"    class="form-control"  ng-model="detalle.descripcion" disabled="disabled"></td>
+                            <td><input type="text"    class="form-control"  ng-model="detalle.modelo" disabled="disabled"></td>
+                            <td><input type="number"  class="form-control"  ng-model="detalle.cantidad" ng-change="importes($index)"></td>
+                            <td><input type="text"    class="form-control"  ng-model="detalle.precio" disabled="disabled"></td>
+                            <td><input type="text"    class="form-control"  ng-model="detalle.importe" style="text-align:right;" disabled="disabled" value="0.00"></td>
+
+                        </tr>  
+                        <tr>
+                            <td colspan="7" align="right" ><b>Subtotal:</b></td>
+                            <td><input type="text"  class="form-control" ng-model="venta.subtotal" value="0.00" style="text-align:right;" disabled="disabled"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" align="right"><b>Enganche:</b></td>
+                            <td><input type="text"  class="form-control" ng-model="venta.enganche" value="0.00" style="text-align:right;" disabled="disabled"></td>
+                        </tr> 
+                         <tr>
+                            <td colspan="7" align="right"><b>Bonificacion de Enganche:</b></td>
+                            <td><input type="text"  class="form-control" ng-model="venta.bonificacion_enganche" value="0.00" style="text-align:right;" disabled="disabled"></td>
+                        </tr>  
+                        <tr>
+                            <td colspan="7" align="right"><b>Total:</b></td>
+                            <td><input type="text"  class="form-control" ng-model="venta.total" value="0.00" style="text-align:right;" disabled="disabled"></td>
+                        </tr>  
+
+
+                  </tbody>
+
+              </table>
+              <br>
+              <center><label for="" ng-show="valido"><b>Los datos ingresados no son correctos, favor de verificar.</b></label></center>
+              <center><label for="" ng-show="existente"><b>El artículo seleccionado no cuenta con existencia, favor de verificar.</b></label></center>
+              <button type="button" class="btn btn-danger" ng-click="cancelarVenta()" ng-show="!tablaAbonos" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-success" ng-click="mostrarAbonos()" ng-show="!tablaAbonos" >Siguiente</button>
+
+              <table  class="table table-hover bs-table-th-centered" width="80%" ng-show="tablaAbonos">
+                    
+                  <thead class="bg-default">
+                    <td colspan="5" align="center">
+                        <b>ABONOS MENSUALES</b>
+                    </td>
+                  </thead>
+                    <tr ng-repeat="abono in abonos">
+                        <td align="center"><input type="hidden" value="{{abono.meses}}" ng-model="venta.meses"> {{abono.meses}} ABONOS DE </td>
+                        <td align="center">${{abono.abono}}</td>
+                        <td align="center">TOTAL A PAGAR: ${{abono.totalApagar}}</td>
+                        <td align="center">SE AHORRA: ${{abono.ahorro}}</td>
+                        <td align="center"><input type="radio" name="pago" value="{{abono.totalApagar}}" ng-model="venta.apagar" selected></td>
+                    </tr>
+              </table>
+              <button type="button" class="btn btn-danger" ng-click="cancelarPago()" ng-show="tablaAbonos" >Cancelar</button>
+              <button type="button" class="btn btn-success" ng-click="guardarVenta()" ng-show="tablaAbonos" >Guardar</button>
+              
+            </div>
+        </div>
+      </div>
+      
+    </div>
+</div>

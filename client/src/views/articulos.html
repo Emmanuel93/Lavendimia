@@ -1,0 +1,83 @@
+  <center> 
+    <div class="page-header" style=>
+        <h1>Catálogo de articulos</h1>
+    </div>
+  </center>
+
+<div class="panel panel-default" style="width:70%;margin:0 auto;">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><h1>Articulos</h1></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" id="pop">&times;</button>
+              <h4 class="modal-title">Articulo Nuevo</h4>
+            </div>
+            <div class="modal-body">
+                <label for="">Codigo:</label>
+                <input type="text" placeholder="" class="form-control" ng-model="articulo.codigo" style="width:15%"><br>
+                <label for="">Descripcion:</label>
+                <input type="text" placeholder="Descripcion" class="form-control" ng-model="articulo.descripcion"><br>
+                <label for="">Modelo:</label>
+                <input type="text" placeholder="Modelo" class="form-control" ng-model="articulo.modelo"><br>
+                <label for="">Precio:</label>
+                <input type="text" placeholder="precio" class="form-control" ng-model="articulo.precio"><br>
+                <label for="">Existencia:</label>
+                <input type="text" placeholder="Existencia" class="form-control" ng-model="articulo.existencia"><br>
+                <button type="button" class="btn btn-success" ng-click="agregarArticulo()" ng-show="guardar">Guardar</button>
+                <button type="button" class="btn btn-success" ng-click="editarArticulo()" ng-show="editar">Editar</button>
+                 <label for="" ng-show="valido">No es posible continuar, debe ingresar {{campos}}son obligatorio.</label>
+
+            </div>
+          </div>
+          
+        </div>
+    </div>
+      
+
+    
+    <div class="panel-heading"></div>
+    
+    <div class="panel-body" align="right">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Codigo o Nombre" ng-model="buscar">
+            </div>
+            <button type="button" class="btn btn-primary">Buscar</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="show" ng-click="siguienteCodigo()">+</button>
+        </form>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover table-bordered bs-table-th-centered" width="80%">
+        <thead>
+            <tr>
+                <th>CODIGO</th>
+                <th>DESCRIPCION</th>
+                <th>MODELO</th>
+                <th>PRECIO</th>
+                <th>EXISTENCIA</th>
+                <th>ACCIONES</th>
+           
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="articulo in articulos | filter : buscar">
+                <td> {{articulo.codigo}} </td>
+                <td> {{articulo.descripcion}} </td>
+                <td> {{articulo.modelo}} </td>
+                <td> {{articulo.precio}}</td>
+                <td> {{articulo.existencia}}</td>
+                <td> 
+                  
+                    <a href="" ng-click="eliminarArticulo( articulo.id , $index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                </td>
+            </tr> 
+        </tbody>
+    </table>
+    <div class="panel-footer" align="center"></div>
+</div>
