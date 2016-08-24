@@ -29,7 +29,7 @@
                 <label for="">Existencia:</label>
                 <input type="text" placeholder="Existencia" class="form-control" ng-model="articulo.existencia"><br>
                 <button type="button" class="btn btn-success" ng-click="agregarArticulo()" ng-show="guardar">Guardar</button>
-                <button type="button" class="btn btn-success" ng-click="editarArticulo()" ng-show="editar">Editar</button>
+                <button type="button" class="btn btn-success" ng-click="EditarArticulo()" ng-show="editar">Editar</button>
                  <label for="" ng-show="valido">No es posible continuar, debe ingresar {{campos}}son obligatorio.</label>
 
             </div>
@@ -73,7 +73,7 @@
                 <td> {{articulo.precio}}</td>
                 <td> {{articulo.existencia}}</td>
                 <td> 
-                  
+                    <a href="" ng-click="cargarArticulo( articulo )" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-modal-window" data-target="#myModal"></span></a>
                     <a href="" ng-click="eliminarArticulo( articulo.id , $index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
                 </td>
             </tr> 

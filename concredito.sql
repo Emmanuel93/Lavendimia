@@ -291,6 +291,8 @@ DELIMITER ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+
+
 DELIMITER ;;
 CREATE PROCEDURE `sp_clientes_eliminar`(
 	in INid bigint 
@@ -462,10 +464,9 @@ DELIMITER ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
+DELIMITER $$;
 CREATE PROCEDURE `sp_ventas_obtener`(
 
-	
 )
 BEGIN 
 	SELECT 
@@ -474,7 +475,7 @@ BEGIN
 		ventas V 
         INNER JOIN clientes C
         on v.cliente_id = C.id;
-END ;;
+END $$;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -512,5 +513,33 @@ DELIMITER ;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+DELIMITER $$;
+CREATE PROCEDURE `sp_clientes_editar`(
+  in INid bigint,in INCodigo char(3),in INNombre varchar(100),in INApellido_paterno varchar(100),in INApellido_materno varchar(100), in INRFC varchar(14)
+)
+BEGIN
+    UPDATE 
+      clientes 
+    set 
+      nombre = INNombre,apellido_paterno=INApellido_paterno,apellido_materno=INApellido_materno,rfc=INRFC
+    where id=INid;
+END $$;
+DELIMITER ;
+
+
+DELIMITER $$;
+CREATE PROCEDURE `sp_articulos_editar`(
+  in INid bigint ,in INCodigo char(4),in INdescripcion varchar(100),in INmodelo varchar(100),in INprecio decimal(16,2), in INexistencia decimal(16,2)
+)
+BEGIN
+  UPDATE
+    articulos
+  set descripcion = INdescripcion,
+      modelo = INmodelo ,
+      precio = INprecio ,
+      existencia = INexistencia
+  where id = INid    
+END  $$;
+DELIMITER ;
 
 -- Dump completed on 2016-08-24  5:33:11

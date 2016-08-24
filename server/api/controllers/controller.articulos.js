@@ -79,5 +79,26 @@ module.exports = {
                 res.status(200).send(true);
             }, res);
         });
+    },
+    actualizar: function(req, res, next){
+        mysql.getPool('concredito').
+        getConnection(function (err, connection) {
+            if(err) { utils.regresarError(err, 500, res); return; }
+
+            var params = [
+                {value: req.body.id },
+                {value: req.body.codigo, isString:true },
+                {value: req.body.descripcion, isString:true },
+                {value: req.body.modelo, isString:true },
+                {value: req.body.precio },
+                {value: req.body.existencia}
+
+            ];
+            console.log(params);
+
+            call(connection, 'sp_articulos_editar', params, function (data) {
+                res.send(200);
+            }, res);
+        });
     }
 };

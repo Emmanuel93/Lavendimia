@@ -62,8 +62,9 @@ function clientesController ($scope, $location, $http) {
 		$http.put('api/clientes',$scope.cliente).success(function (data) {
 	        $scope.cliente = {};
 	        $scope.listaClientes();
-	    	$('#pop').click();
-	    });
+	        $('#pop').click();
+	    	    
+	     });
 	}
 
 	$scope.siguienteCodigo = function(){

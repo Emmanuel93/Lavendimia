@@ -43,11 +43,25 @@ function articulosController ($scope, $location, $http) {
 			$scope.valido = true;
 		}
 	}	
+	$scope.cargarArticulo = function( articulo ){
+		$scope.editar = true;
+		$scope.guardar = false;
+		$scope.articulo = articulo;
+		$('#show').click();
+	}
 	$scope.eliminarArticulo = function(id,index){
 
 		$http.delete('api/articulos/'+id).success(function (data) {
 	        $scope.articulos.splice(index, 1);
 	    });
+	}
+	$scope.EditarArticulo = function (){
+		$http.put('api/articulos',$scope.articulo).success(function (data) {
+	        $scope.articulo = {};
+	        $scope.listaArticulos();
+	        $('#pop').click();
+	    	    
+	     });
 	}
 
 

@@ -9,10 +9,10 @@ module.exports = {
         mysql.getPool('concredito').
         getConnection(function (err, connection) {
             if(err) { utils.regresarError(err, 500, res); return; }
-
+            console.log("entro");
             var params = [];
 
-            call(connection, 'sp_ventas_obtener', params, function (data) {
+            call(connection, 'sp_ventas_obtener',params, function (data) {
                 res.send(data);
             }, res);
         });

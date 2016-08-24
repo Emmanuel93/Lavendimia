@@ -66,6 +66,7 @@ module.exports = {
                 {value: req.body.rfc, isString:true }
 
             ];
+            console.log(params);
 
             call(connection, 'sp_clientes_editar', params, function (data) {
                 res.send(200);
