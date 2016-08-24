@@ -4,7 +4,7 @@
   "description": "Plantilla general de proyectos",
   "main": "server.js",
   "scripts": {
-     "postinstall": "bower cache clean && bower install"
+     "postinstall": "bower bower install"
   },
   "author": "",
   "license": "ISC",
