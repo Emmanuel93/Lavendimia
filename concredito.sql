@@ -178,7 +178,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_articulos_agregar`(
+CREATE PROCEDURE `sp_articulos_agregar`(
 	in INCodigo char(4),in INdescripcion varchar(100),in INmodelo varchar(100),in INprecio decimal(16,2), in INexistencia decimal(16,2)
 )
 BEGIN
@@ -200,7 +200,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_articulos_eliminar`(
+CREATE PROCEDURE `sp_articulos_eliminar`(
 	in INid bigint 
 )
 BEGIN
@@ -221,7 +221,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_articulos_obtener`(
+CREATE PROCEDURE `sp_articulos_obtener`(
 	IN Indescripcion varchar(500)
 )
 BEGIN
@@ -247,7 +247,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_articulos_siguiente_codigo`()
+CREATE PROCEDURE `sp_articulos_siguiente_codigo`()
 BEGIN
 
 	select  
@@ -270,7 +270,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_clientes_agregar`(
+CREATE PROCEDURE `sp_clientes_agregar`(
 	in INCodigo char(3),in INNombre varchar(100),in INApellido_paterno varchar(100),in INApellido_materno varchar(100), in INRFC varchar(14)
 )
 BEGIN
@@ -292,7 +292,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_clientes_eliminar`(
+CREATE PROCEDURE `sp_clientes_eliminar`(
 	in INid bigint 
 )
 BEGIN
@@ -313,7 +313,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_clientes_obtener`(
+CREATE PROCEDURE `sp_clientes_obtener`(
 	IN INnombre varchar(500)
 )
 BEGIN
@@ -339,7 +339,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_clientes_siguiente_codigo`()
+CREATE PROCEDURE `sp_clientes_siguiente_codigo`()
 BEGIN
 
 	select  
@@ -362,7 +362,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_configuracion_guardar`(
+CREATE PROCEDURE `sp_configuracion_guardar`(
 	IN INtasa_financiamiento decimal(16,2),
     IN INenganche decimal(16,2),
     IN INplazo_maximo decimal(16,2)
@@ -388,7 +388,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_configuracion_obtener`(
+CREATE PROCEDURE `sp_configuracion_obtener`(
 )
 BEGIN
 	SELECT 
@@ -412,7 +412,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ventas_agregar`(
+CREATE PROCEDURE `sp_ventas_agregar`(
  IN INcliente_id bigint, INCodigo char(3),INenganche decimal(16,2),INbonificacion decimal(16,2),INtotal decimal(16,2),INmeses int)
 BEGIN 
 	INSERT INTO ventas (cliente_id,codigo,enganche,bonificacion_enganche,total,fecha,meses) 
@@ -434,7 +434,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ventas_agregar_detalles`(
+CREATE PROCEDURE `sp_ventas_agregar_detalles`(
 	IN INVenta_id bigint,IN INarticulo_id bigint, IN INcantidad decimal(16,4),
 	IN INprecio decimal(16,4),IN INimporte_neto decimal(16,4)
 	
@@ -463,7 +463,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ventas_obtener`(
+CREATE PROCEDURE `sp_ventas_obtener`(
 
 	
 )
@@ -490,7 +490,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ventas_siguiente_codigo`()
+CREATE PROCEDURE `sp_ventas_siguiente_codigo`()
 BEGIN
 
 	select  
