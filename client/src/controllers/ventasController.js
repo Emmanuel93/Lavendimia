@@ -163,6 +163,7 @@ function ventasController ($scope, $location, $http) {
 	     	$scope.obtenerVentas();
 
 	    });
+	    $('#pop').click();
 	}
 	$scope.obtenerVentas();
 	$scope.obtenerCodigo();
